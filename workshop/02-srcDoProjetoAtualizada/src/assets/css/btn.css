@@ -1,0 +1,11 @@
+/* btn */
+.btn {
+  padding: 3px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.btn--clean {
+  border: 0;
+  background: none;
+}
