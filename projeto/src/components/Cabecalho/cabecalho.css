@@ -2,28 +2,28 @@
 .cabecalho {
     width: 100%;
     background-color: #fff;
-}
-.cabecalho__container {
+  }
+  .cabecalho__container {
     padding: 0 15px;
     display: flex;
     text-align: center;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-}
-@media (max-width: 610px) {
+  }
+  @media (max-width: 610px) {
     .cabecalho__container {
-        justify-content: center;
+      justify-content: center;
     }
-}
-.cabecalho__logo {
+  }
+  .cabecalho__logo {
     padding: 13px 0px;
-}
-.cabecalho__logo a {
+  }
+  .cabecalho__logo a {
     color: inherit;
     text-decoration: none;
-}
-
-.cabecalho__item {
+  }
+  
+  .cabecalho__item {
     display: inline-block;
-}
+  }
