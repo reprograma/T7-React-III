@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <Fragment>
         <Cabecalho>
-            <NavMenu usuario="@omariosouto" />
+            <NavMenu usuario="@brunavieirat" />
         </Cabecalho>
         <div className="container">
             <Dashboard>
