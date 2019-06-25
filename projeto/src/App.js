@@ -23,9 +23,9 @@ class App extends Component {
             tweets: [stateAnterior.novoTweet, ...stateAnterior.tweets],
             novoTweet: ''
         }))
-
     }
     render() {
+
         return (
             <Fragment>
                 <Cabecalho>
@@ -57,13 +57,13 @@ class App extends Component {
                     <Dashboard posicao="centro">
                         <Widget>
                             <div className="tweetsArea">
-                                {
-                                    this.state.tweets.length >0 ?
-                                    this.state.tweets.map((elemento, index) => (
-                                        <Tweet texto={elemento} key={index} />
-                                    )) :
-                                    <p> Compartilhe seu primeiro Tweet.</p>
+
+                                {this.state.tweets.length > 0 ?
+                                    this.state.tweets.map((elemento, index) => {
+                                        return <Tweet texto={elemento} key={index} />
+                                    }) : <p> Compartilhe seu primeiro Tweet.</p>
                                 }
+
                             </div>
                         </Widget>
                     </Dashboard>
