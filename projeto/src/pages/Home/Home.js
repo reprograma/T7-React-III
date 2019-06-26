@@ -20,8 +20,8 @@ class Home extends Component {
         // const novoTweet = this.state.novoTweet
         // const anteriores = this.state.tweets
         this.setState(stateAnterior => ({
-            tweets: [stateAnterior.novoTweet, ...stateAnterior.tweets],
-            novoTweet: ''
+           tweets: [stateAnterior.novoTweet, ...stateAnterior.tweets],
+           novoTweet: ''
         }))
     }
     render() {
@@ -57,6 +57,15 @@ class Home extends Component {
                     <Dashboard posicao="centro">
                         <Widget>
                             <div className="tweetsArea">
+
+                        {/* {this.state.tweets.length === 0 ?
+                        'bla bla bla ' :
+                        this.state.tweets.map((item, i ) => {
+                             //console.log('item do map', item)
+                             return (
+                             <Tweet texto={item} key={i}><Tweet/>                          </Tweet>)
+
+                        })} */}
 
                                 {this.state.tweets.length > 0 ?
                                     this.state.tweets.map((elemento, index) => {

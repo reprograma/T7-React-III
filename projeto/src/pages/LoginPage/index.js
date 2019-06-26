@@ -10,6 +10,7 @@ class LoginPage extends Component {
     }   
 
     fazerLogin = (e) => {
+        //console.log(this.inputLogin.value)
         e.preventDefault()
         const dadosDeLogin = {
             login: this.inputLogin.value,
@@ -22,18 +23,18 @@ class LoginPage extends Component {
             body: JSON.stringify(dadosDeLogin)
         })
         .then(resp => {
-            if (!resp.ok)
-                throw resp;
-                //console.log(resp)
+             if (!resp.ok)
+                 throw resp;               
             return resp.json()
         })
         .then((respJson) => {
+           // console.log('resp', respJson)
             localStorage.setItem('TOKEN', respJson.token)
             this.props.history.push('/')
         })
         .catch((err) => {
-             err.json()
-             .then(res => console.log('catch', res))
+              err.json()
+              .then(res => alert(res.message))
         })
     }
 
@@ -49,7 +50,10 @@ class LoginPage extends Component {
                                 <div className="loginPage__inputWrap">
                                     <label className="loginPage__label" htmlFor="login">Login</label> 
                                     <input 
-                                    ref = {(elementoInput) => this.inputLogin = elementoInput}
+                                    ref = {(elemento) =>{
+                                       // console.log(elemento)
+                                         this.inputLogin = elemento
+                                        }}
                                     className="loginPage__input" 
                                     type="text" 
                                     id="login" 
@@ -63,7 +67,7 @@ class LoginPage extends Component {
                                     />
                                 </div>
                                  {/* <div className="loginPage__errorBox">
-                                    Mensagem de erro!
+                                    Mens]agem de erro!
                                 </div>  */}
                                 <div className="loginPage__inputWrap">
                                     <button className="loginPage__btnLogin" type="submit">
