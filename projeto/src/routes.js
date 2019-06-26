@@ -18,9 +18,11 @@ function estAutenticado() {
 class PrivateRoute extends React.Component {
     render() {
         const Componente = this.props.component
+        console.log(this.props)
         if (estAutenticado()) {
             // componente rota tweets
             return <Route render={() => <Componente {...this.props}></Componente>}></Route>
+            // <Route exact={this.props.exact} path={this.props.path} component={this.props.component}>  </Route>
         }
         else {
             // rota login
