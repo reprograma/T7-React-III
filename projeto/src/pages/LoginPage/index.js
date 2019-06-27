@@ -8,7 +8,8 @@ class LoginPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            aparecer: false
+            aparecer: false,
+            mensagem: ''
         }
     }
 
@@ -26,29 +27,37 @@ class LoginPage extends Component {
             body: JSON.stringify(dadosDeLogin)
         })
             .then(resp => {
+                //chega como Response 
                 if (!resp.ok)
-                    throw resp;
+                    throw resp; // throw envia a resposta pro catch e pula o then
+
+                //.json() pega só a resposta do back
+                //Tipo Promise: precisamos fazer outro then pra capturar o valor
                 return resp.json()
             })
             .then((respJson) => {
-                // console.log('resp', respJson)
+                //se a reposta for 200 OK 
+                //peguei o retorno do back e consigo usar como variável
+                // console.log('resp OK', respJson)
                 localStorage.setItem('TOKEN', respJson.token)
                 this.props.history.push('/')
             })
             .catch((err) => {
+                //.json() pega só a resposta do back
+                //Tipo Promise: precisamos fazer outro .then pra capturar o valor
                 err.json()
                     .then(res => {
                         this.setState({
-                            aparecer: true
+                            aparecer: true,
+                            mensagem: res.message
                         })
-                        alert(res.message)}
-                        )
+                    }
+                    )
             })
     }
 
     render() {
-        console.log(this.state.aparecer)
-        return (
+         return (
             <Fragment>
                 <Cabecalho />
                 <div className="loginPage">
@@ -75,13 +84,10 @@ class LoginPage extends Component {
                                     />
                                 </div>
 
-                                {this.state.aparecer === true ?
-                                    <div className="loginPage__errorBox">
-                                        Mensagem de erro!
-                            </div> :
-                                    ''}
-
-
+                                {/* {this.state.aparecer === true ? */}
+                                {this.state.aparecer === true ? <div className="loginPage__errorBox">
+                                    {this.state.mensagem}
+                            </div> : ''}
                                 <div className="loginPage__inputWrap">
                                     <button className="loginPage__btnLogin" type="submit">
                                         Logar
