@@ -5,27 +5,36 @@ import Dashboard from '../../components/Dashboard'
 import Widget from '../../components/Widget'
 import TrendsArea from '../../components/TrendsArea'
 import Tweet from '../../components/Tweet'
+import { postTweets } from '../../services/tweets'
 
 class Home extends Component {
     constructor() {
         super();
         this.state = {
             novoTweet: '',
-            tweets: []
+            tweets: [ ]
         }
     }
 
     adicionaTweet = (event) => {
         event.preventDefault();
-        // const novoTweet = this.state.novoTweet
-        // const anteriores = this.state.tweets
-        this.setState(stateAnterior => ({
-           tweets: [stateAnterior.novoTweet, ...stateAnterior.tweets],
-           novoTweet: ''
-        }))
+
+        const postarNovoTweet = {
+            conteudo: this.state.novoTweet,
+        }
+        postTweets(postarNovoTweet, localStorage.getItem('TOKEN'))
+        .then(resposta => {
+            console.log(resposta.data)
+            this.setState(stateAnterior => ({
+                tweets: [resposta.data, ...stateAnterior.tweets],
+                novoTweet: ''
+            }))
+        })
+
+        
     }
     render() {
-
+       // console.log('tweets', this.state.tweets)
         return (
             <Fragment>
                 <Cabecalho>
@@ -58,18 +67,9 @@ class Home extends Component {
                         <Widget>
                             <div className="tweetsArea">
 
-                        {/* {this.state.tweets.length === 0 ?
-                        'bla bla bla ' :
-                        this.state.tweets.map((item, i ) => {
-                             //console.log('item do map', item)
-                             return (
-                             <Tweet texto={item} key={i}><Tweet/>                          </Tweet>)
-
-                        })} */}
-
                                 {this.state.tweets.length > 0 ?
                                     this.state.tweets.map((elemento, index) => {
-                                        return <Tweet texto={elemento} key={index} />
+                                        return <Tweet {...elemento} key={index} />
                                     }) : <p> Compartilhe seu primeiro Tweet.</p>
                                 }
 

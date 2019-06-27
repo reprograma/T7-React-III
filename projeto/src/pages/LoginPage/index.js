@@ -27,6 +27,7 @@ class LoginPage extends Component {
             body: JSON.stringify(dadosDeLogin)
         })
             .then(resp => {
+                console.log('resp', resp)
                 //chega como Response 
                 if (!resp.ok)
                     throw resp; // throw envia a resposta pro catch e pula o then
