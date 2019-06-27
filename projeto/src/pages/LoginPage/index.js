@@ -84,7 +84,6 @@ class LoginPage extends Component {
                                     />
                                 </div>
 
-                                {/* {this.state.aparecer === true ? */}
                                 {this.state.aparecer === true ? <div className="loginPage__errorBox">
                                     {this.state.mensagem}
                             </div> : ''}
