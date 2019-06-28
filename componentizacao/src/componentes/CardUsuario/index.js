@@ -1,6 +1,7 @@
 import React from 'react'
 
 class CardUsuario extends React.Component {
+  
     constructor(props){
         super(props)
         this.state = {
@@ -17,9 +18,10 @@ class CardUsuario extends React.Component {
                         this.setState({
                             valorInput: e.target.value
                         })
-                        this.props.getNome(this.state.valorInput)
+                     //   setValorInput(e.target.value)
+                        this.props.setNome(this.state.valorInput)
                     } }></input>
-                    <button onClick={() => this.props.getNome(this.state.valorInput)}>OK</button>
+                    <button onClick={() => this.props.setNome('bruna')}>OK</button>
                 </div>
 
             </section>

@@ -1,37 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Menu from './componentes/NavMenu'
 import CardUsuario from './componentes/CardUsuario/index'
 
-class App extends React.Component {
-  constructor(){
-    super()
-    this.state={
-      nome: ''
-    }
-  }
-
-  pegarNome = (valor) => {
-    this.setState({
-      nome: valor
-    })
-  }
-
-  render() {
-    return (
+function App() {
+  const [nome, setNome] = useState('')
+  
+      return (
       <div className="App">
-         <Menu nomeAlunx={this.state.nome}></Menu>
+         <Menu nomeAlunx={nome}></Menu>
         <div className="texto">
           Bem Vindo ao Reprograma
-
-          {this.state.nome !== '' ?  ', ' : ''} 
-          
-          {this.state.nome}
+          {nome !== '' ?  ', ' : ''}           
+          {nome}
       </div>
-        <CardUsuario getNome={this.pegarNome}></CardUsuario>
+        <CardUsuario setNome={setNome}></CardUsuario>
       </div>
     );
-  }
+  
 }
 
 export default App;
