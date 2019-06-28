@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.texto {
+  font-weight: bold;
+  color: blue;
+}
+
+.menu {
+  height: 50px;
+  display: flex;
+}
+
+ul {
+
+}
