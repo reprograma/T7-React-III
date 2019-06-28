@@ -15,6 +15,9 @@
   display: block;
   cursor: pointer;
 }
+.navMenu-ativo {
+  color: red;
+}
 @media (max-width: 610px) {
   .navMenu__link {
     padding: 14px 7px;

@@ -14,9 +14,9 @@ export default class NavMenu extends Component {
             </a>
           </li>
           <li className={navMenuStyles.navMenu__item}>
-            <a className={navMenuStyles.navMenu__link} href="/">
+            <Link className={navMenuStyles.navMenu__link} to="/">
               Página Inicial
-            </a>
+            </Link>
           </li>
           <li className={navMenuStyles.navMenu__item}>
             <a className={navMenuStyles.navMenu__link} href="/hashtags">
@@ -28,13 +28,13 @@ export default class NavMenu extends Component {
             {/* para redirecionar para link interno utilize o componente <Link></li>  
                para links externos, use a tag <a>
           */}
-            <Link className={navMenuStyles.navMenu__link} onClick={() => {
+            <NavLink activeClassName="navMenu-ativo" className={navMenuStyles.navMenu__link} onClick={() => {
               localStorage.removeItem('TOKEN')
             }
             }
               to="/login">
               Logout
-            </Link>
+            </NavLink>
 
             {/* <NavLink activeClassName="novoTweet__status--invalido" className={navMenuStyles.navMenu__link} onClick={() => {
               localStorage.removeItem('TOKEN')

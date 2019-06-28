@@ -12,7 +12,7 @@ class Home extends Component {
         super();
         this.state = {
             novoTweet: '',
-            tweets: [ ]
+            tweets: []
         }
     }
 
@@ -20,21 +20,30 @@ class Home extends Component {
         event.preventDefault();
 
         const postarNovoTweet = {
-            conteudo: this.state.novoTweet,
+            conteudo: this.state.novoTweet
         }
-        postTweets(postarNovoTweet, localStorage.getItem('TOKEN'))
-        .then(resposta => {
-            console.log(resposta.data)
-            this.setState(stateAnterior => ({
-                tweets: [resposta.data, ...stateAnterior.tweets],
-                novoTweet: ''
-            }))
-        })
 
-        
+        //   postTweets(postarNovoTweet, localStorage.getItem('TOKEN'))
+
+        postTweets(postarNovoTweet, localStorage.getItem('TOKEN'))
+            .then(resposta => {
+                console.log(resposta.data)
+                this.setState(stateAnterior => ({
+                    tweets: [resposta.data, ...stateAnterior.tweets],
+                    novoTweet: ''
+                }))
+            })
     }
+
+    removeTweet = (idRecebido) => {       
+        const testeFilter = this.state.tweets.filter(x => x._id !== idRecebido)
+        this.setState({
+            tweets: testeFilter
+        })
+    }
+
     render() {
-       // console.log('tweets', this.state.tweets)
+        //  console.log('tweets', this.state.tweets)
         return (
             <Fragment>
                 <Cabecalho>
@@ -66,10 +75,9 @@ class Home extends Component {
                     <Dashboard posicao="centro">
                         <Widget>
                             <div className="tweetsArea">
-
                                 {this.state.tweets.length > 0 ?
-                                    this.state.tweets.map((elemento, index) => {
-                                        return <Tweet {...elemento} key={index} />
+                                    this.state.tweets.map((elemento) => {
+                                        return <Tweet {...elemento} key={elemento._id} remove={this.removeTweet} />
                                     }) : <p> Compartilhe seu primeiro Tweet.</p>
                                 }
 
